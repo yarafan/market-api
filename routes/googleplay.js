@@ -38,7 +38,7 @@ router.route("/")
                 }
             ]
         }));
-    })
+    });
 router.route("/positions")
     .get((req, res) => {
         const query = qs.parse(req.url.split("?")[1]);
@@ -47,18 +47,18 @@ router.route("/positions")
             .then((results) => {
                 res.set("Content-Type", "application/json");
                 res.send(JSON.stringify({results: results}));
-        })
-            .catch((err) => res.send(err.message))
+            })
+            .catch((err) => res.send(err.message));
     })
     .post((req, res) => {
-        const query = req.body
+        const query = req.body;
 
         gPlay.positions({ country: query.country, term: query.term, total: query.total || 1, })
             .then((results) => {
                 res.set("Content-Type", "application/json");
                 res.send(JSON.stringify({results: results}));
-        })
-            .catch((err) => res.send(err.message))
-    })
+            })
+            .catch((err) => res.send(err.message));
+    });
 
-module.exports = router
+module.exports = router;
