@@ -4,8 +4,4 @@ module.exports = {
         password: "",
         androidId: "",
     },
-    tor: {
-        host: "",
-        port: ""
-    }
 };

@@ -1,8 +1,11 @@
+"use strict";
+
 const run = (options) => {
     const host = options.host;
     const port = options.port;
 
     const app = require("express")();
+    // Global middleware
     const bodyParser = require("body-parser");
     // routes
     const appstoreRoute = require("./routes/appstore.js");
