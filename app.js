@@ -1,27 +1,17 @@
 "use strict";
 
-const run = (options) => {
-    const host = options.host;
-    const port = options.port;
+const host = "localhost";
+const port = 8080;
+const app = require("express")();
+const debug = require("debug")("market-api:initialization");
+const bodyParser = require("body-parser");
 
-    const app = require("express")();
-    // Global middleware
-    const bodyParser = require("body-parser");
-    // routes
-    const appstoreRoute = require("./routes/appstore.js");
-    const googlePlayRoute = require("./routes/googleplay.js");
-    // Global middleware
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
-    // mount points
-    app.use("/appstore", appstoreRoute);
-    app.use("/googleplay", googlePlayRoute);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-    /* eslint-disable no-console*/
-    app.listen(port, host, () => console.log(`Server is listening on http://${host}:${port}`));
-    /* eslint-enable no-console*/
-};
+debug("Mounting routes");
+app.use(require("./middleware/proxy-request.js"));
+app.use(require("./controllers"));
+debug("Routes mounted");
 
-module.exports = {
-    run: run
-};
+app.listen(port, host, () => debug(`Server is listening on http://${host}:${port}`));

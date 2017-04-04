@@ -18,9 +18,12 @@
     "gpapi": "^4.1.0",
     "lodash": "^4.17.4",
     "proxy-lists": "^1.11.1",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "socks5-https-client": "^1.2.0",
+    "tor-control": "0.0.1"
   },
   "devDependencies": {
+    "debug": "^2.6.3",
     "eslint": "^3.18.0"
   }
 }
